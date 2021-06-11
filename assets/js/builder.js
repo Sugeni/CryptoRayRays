@@ -70,7 +70,7 @@ function steps(value) {
 function drawTemplate() {
     const widgets = []
 
-    for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
+    for (let rowIdx = 0; rowIdx < labels.length; rowIdx++) {
         const rowY = rowIdx * rowHeight + 10 * rowIdx
         const rowLabel = labels[rowIdx]
         const rowColor = getRowColor(rowIdx)
@@ -82,7 +82,7 @@ function drawTemplate() {
             if (rowIdx === 0) {
                 widgets.push(getColumnLabel(colX, labels[colIdx]))
             }
-            widgets.push(getShape(colX, rowY, rowColor))
+            widgets.push(getShape(colX, rowY, rowColor, colIdx))
             console.log(steps[colIdx])
         }
     }
@@ -124,3 +124,5 @@ function getColumnLabel(x, label) {
 function getRowColor(index) {
     return colors[index % colors.length]
 }
+
+drawTemplate();
