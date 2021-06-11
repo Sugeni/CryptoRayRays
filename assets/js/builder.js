@@ -11,27 +11,41 @@ const colors = [
     '#FF8A5B',
     '#EA526F',
 ]
-const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*']
-const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories']
+const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*'];
+const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories'];
 
-const customValues = ['Value1', 'Value2', 'Value3', 'Value4', 'Value5']
+
+const category = ['CANINE','ZOMBIE','ALIEN','HOLO'];
+const background = ['Transparent']
+const outline = ['Black']
+const color = ['RED','RUST','GRAY','BROWN','WHITE','GOLD','PINK','BLUE','ZOMBIE','ALIEN','HOLO'];
+const eyes = ['NONE','EYE SPOT','SCAR'];
+const mouth = ['NONE','DROOL','BLOOD','FANG'];
+const ears = ['NONE','EARRING'];
+const hats = ['NONE','FITTED-BLACK','FITTED-RED','FITTED-NAVY','SKULLY-BLACK','SKULLY-ORANGE','SPINNER','POLICE CAP'];
+const glasses = ['NONE','SHADES-PINK','SHADES-LIME','SHADES-GOLD','SHADES-HOLO','MATSUDA-BLACK','MATSUDAS-GOLD','3D', 'EYE MASK', 'EYE PATCH'];
+const jewerlry = ['NONE','CHAIN','COLLAR-GRAY','COLLAR-PINK','COLLAR-LIME','COLLAR-BLUE','COLLAR-ORANGE'];
+const tags = ['NONE','TAG-GOLD','TAG-PINK','TAG-BLUE'];
+const accesories = ['NONE','BONE','SWEATER-PINK','SWEATER-BLUE'];
+
 const columnWidth = 150
 const rowHeight = 100
 const fontSize = 36
 
-function drawTemplate(labels) {
+function drawTemplate() {
     const widgets = []
-    for (let rowIdx = 0; rowIdx < labels.length; rowIdx++) {
+    const labels = requiredFeatures.concat(optionalFeatures)
+    for (let rowIdx = 0; rowIdx < labels.length ; rowIdx++) {
         const rowY = rowIdx * rowHeight + 10 * rowIdx
         const rowLabel = labels[rowIdx]
         const rowColor = getRowColor(rowIdx)
         if (rowLabel) {
-            widgets.push(getRowLabel(rowLabel, rowY, rowColor))
+           // widgets.push(getRowLabel(rowLabel, rowY, rowColor))
         }
-        for (let colIdx = 0; colIdx < requiredFeatures.length; colIdx++) {
-            const colX = colIdx * columnWidth + 2 * colIdx
+        for (let colIdx = 0; colIdx < labels.length; colIdx++) {
+            const colX = colIdx * columnWidth + 2 * colIdx + 25
             if (rowIdx === 0) {
-                widgets.push(getColumnLabel(colIdx, colX))
+                widgets.push(getColumnLabel(colX, labels[colIdx]))
             }
             widgets.push(getShape(colX, rowY, rowColor))
         }
@@ -54,29 +68,12 @@ function getShape(x, y, color) {
     }
 }
 
-function getRowLabel(text, y, color) {
-    return {
-        type: 'text',
-        x: -(columnWidth / 2 + fontSize),
-        y: y,
-        text: text,
-        width: columnWidth,
-        height: fontSize,
-        rotation: 270,
-        style: {
-            fontSize: fontSize,
-            textColor: color,
-            textAlign: 'c',
-        },
-    }
-}
-
-function getColumnLabel(colIdx, x) {
+function getColumnLabel( x, label) {
     return {
         type: 'text',
         x: x,
         y: -(rowHeight / 2 + fontSize),
-        text: requiredFeatures[colIdx],
+        text: label,
         width: columnWidth,
         height: fontSize,
         style: {
