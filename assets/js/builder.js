@@ -11,51 +11,87 @@ const colors = [
     '#FF8A5B',
     '#EA526F',
 ]
-const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*'];
-const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories'];
 
+//const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*'];
+//const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories'];
+const labels = ['Category*', 'Background*', 'Outline*', 'Color*','Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories']
 
-const category = ['CANINE','ZOMBIE','ALIEN','HOLO'];
+const category = ['CANINE', 'ZOMBIE', 'ALIEN', 'HOLO'];
 const background = ['Transparent']
 const outline = ['Black']
-const color = ['RED','RUST','GRAY','BROWN','WHITE','GOLD','PINK','BLUE','ZOMBIE','ALIEN','HOLO'];
-const eyes = ['NONE','EYE SPOT','SCAR'];
-const mouth = ['NONE','DROOL','BLOOD','FANG'];
-const ears = ['NONE','EARRING'];
-const hats = ['NONE','FITTED-BLACK','FITTED-RED','FITTED-NAVY','SKULLY-BLACK','SKULLY-ORANGE','SPINNER','POLICE CAP'];
-const glasses = ['NONE','SHADES-PINK','SHADES-LIME','SHADES-GOLD','SHADES-HOLO','MATSUDA-BLACK','MATSUDAS-GOLD','3D', 'EYE MASK', 'EYE PATCH'];
-const jewerlry = ['NONE','CHAIN','COLLAR-GRAY','COLLAR-PINK','COLLAR-LIME','COLLAR-BLUE','COLLAR-ORANGE'];
-const tags = ['NONE','TAG-GOLD','TAG-PINK','TAG-BLUE'];
-const accesories = ['NONE','BONE','SWEATER-PINK','SWEATER-BLUE'];
+const color = ['RED', 'RUST', 'GRAY', 'BROWN', 'WHITE', 'GOLD', 'PINK', 'BLUE', 'ZOMBIE', 'ALIEN', 'HOLO'];
+const eyes = ['NONE', 'EYE SPOT', 'SCAR'];
+const mouth = ['NONE', 'DROOL', 'BLOOD', 'FANG'];
+const ears = ['NONE', 'EARRING'];
+const hats = ['NONE', 'FITTED-BLACK', 'FITTED-RED', 'FITTED-NAVY', 'SKULLY-BLACK', 'SKULLY-ORANGE', 'SPINNER', 'POLICE CAP'];
+const glasses = ['NONE', 'SHADES-PINK', 'SHADES-LIME', 'SHADES-GOLD', 'SHADES-HOLO', 'MATSUDA-BLACK', 'MATSUDAS-GOLD', '3D', 'EYE MASK', 'EYE PATCH'];
+const jewerlry = ['NONE', 'CHAIN', 'COLLAR-GRAY', 'COLLAR-PINK', 'COLLAR-LIME', 'COLLAR-BLUE', 'COLLAR-ORANGE'];
+const tags = ['NONE', 'TAG-GOLD', 'TAG-PINK', 'TAG-BLUE'];
+const accesories = ['NONE', 'BONE', 'SWEATER-PINK', 'SWEATER-BLUE'];
 
 const columnWidth = 150
 const rowHeight = 100
 const fontSize = 36
 
+function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function steps(value) {
+    switch (value) {
+        case 0:
+            return category[generateRandomInteger(category.length)]
+        case 1:
+            return background[generateRandomInteger(background.length)]
+        case 2:
+            return outline[generateRandomInteger(outline.length)]
+        case 3:
+            return color[generateRandomInteger(color.length)]
+        case 4:
+            return eyes[generateRandomInteger(eyes.length)]
+        case 5:
+            return mouth[generateRandomInteger(mouth.length)]
+        case 6:
+            return ears[generateRandomInteger(ears.length)]
+        case 7:
+            return hats[generateRandomInteger(hats.length)]
+        case 8:
+            return glasses[generateRandomInteger(glasses.length)]
+        case 9:
+            return jewerlry[generateRandomInteger(jewerlry.length)]
+        case 10:
+            return tags[generateRandomInteger(tags.length)]
+        case 11:
+            return accesories[generateRandomInteger(accesories.length)]
+    }
+
+}
+
 function drawTemplate() {
     const widgets = []
-    const labels = requiredFeatures.concat(optionalFeatures)
-    for (let rowIdx = 0; rowIdx < labels.length ; rowIdx++) {
+
+    for (let rowIdx = 0; rowIdx < labels.length; rowIdx++) {
         const rowY = rowIdx * rowHeight + 10 * rowIdx
         const rowLabel = labels[rowIdx]
         const rowColor = getRowColor(rowIdx)
         if (rowLabel) {
-           // widgets.push(getRowLabel(rowLabel, rowY, rowColor))
+            // widgets.push(getRowLabel(rowLabel, rowY, rowColor))
         }
         for (let colIdx = 0; colIdx < labels.length; colIdx++) {
             const colX = colIdx * columnWidth + 2 * colIdx + 25
             if (rowIdx === 0) {
                 widgets.push(getColumnLabel(colX, labels[colIdx]))
             }
-            widgets.push(getShape(colX, rowY, rowColor))
+            widgets.push(getShape(colX, rowY, rowColor, steps[colIdx]))
         }
     }
     miro.board.widgets.create(widgets)
 }
 
-function getShape(x, y, color) {
+function getShape(x, y, color, feature) {
     return {
         type: 'shape',
+        text: feature,
         x: x,
         y: y,
         width: columnWidth,
@@ -68,7 +104,7 @@ function getShape(x, y, color) {
     }
 }
 
-function getColumnLabel( x, label) {
+function getColumnLabel(x, label) {
     return {
         type: 'text',
         x: x,
