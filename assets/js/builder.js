@@ -13,6 +13,8 @@ const colors = [
 ]
 const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*']
 const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories']
+
+const customValues = ['Value1', 'Value2', 'Value3', 'Value4', 'Value5']
 const columnWidth = 150
 const rowHeight = 100
 const fontSize = 36
@@ -47,6 +49,7 @@ function getShape(x, y, color) {
         style: {
             borderWidth: 0,
             backgroundColor: color,
+            shapeType: ''
         },
     }
 }
