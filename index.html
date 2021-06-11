@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script src="https://miro.com/app/static/sdk.1.1.js"></script>
-    <script>
+  <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+  <script>
     miro.onReady(() => {
       miro.initialize({
         extensionPoints: {
@@ -16,11 +17,23 @@
         }
       })
     })
-    </script>
-</head>
-<body>
 
-<h1>Hello world</h1>
-</body>
+    async function onToolbarAppButtonClicked() {
+      const isAuthorized = await miro.isAuthorized()
+
+      if (!isAuthorized) {
+        // Ask the user to authorize the app.
+        await miro.requestAuthorization()
+      }
+
+      // Once authorized, open the app.
+      openMyApp()
+    }
+
+    function openMyApp() {
+      miro.board.ui.openLeftSidebar('main-app-sidebar.html')
+    }
+  </script>
+</head>
 
 </html>
