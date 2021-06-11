@@ -38,6 +38,7 @@ function generateRandomInteger(max) {
 }
 
 function steps(value) {
+    console.log(`value -> ${value}`)
     switch (value) {
         case 0:
             return category[generateRandomInteger(category.length)]
