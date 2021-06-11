@@ -2,5 +2,8 @@
     "name": "template-builder",
     "private": true,
     "version": "0.0.1",
-    "license": "MIT"
-  }
+    "license": "MIT",
+    "dependencies": {
+        "jquery-csv": "^1.0.21"
+    }
+}

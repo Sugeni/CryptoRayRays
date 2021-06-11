@@ -11,7 +11,8 @@ const colors = [
     '#FF8A5B',
     '#EA526F',
 ]
-const workDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*']
+const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories']
 const columnWidth = 150
 const rowHeight = 100
 const fontSize = 36
@@ -25,7 +26,7 @@ function drawTemplate(labels) {
         if (rowLabel) {
             widgets.push(getRowLabel(rowLabel, rowY, rowColor))
         }
-        for (let colIdx = 0; colIdx < workDays.length; colIdx++) {
+        for (let colIdx = 0; colIdx < requiredFeatures.length; colIdx++) {
             const colX = colIdx * columnWidth + 2 * colIdx
             if (rowIdx === 0) {
                 widgets.push(getColumnLabel(colIdx, colX))
@@ -72,7 +73,7 @@ function getColumnLabel(colIdx, x) {
         type: 'text',
         x: x,
         y: -(rowHeight / 2 + fontSize),
-        text: workDays[colIdx],
+        text: requiredFeatures[colIdx],
         width: columnWidth,
         height: fontSize,
         style: {
