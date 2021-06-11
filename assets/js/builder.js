@@ -82,16 +82,17 @@ function drawTemplate() {
             if (rowIdx === 0) {
                 widgets.push(getColumnLabel(colX, labels[colIdx]))
             }
-            widgets.push(getShape(colX, rowY, rowColor, steps[colIdx]))
+            widgets.push(getShape(colX, rowY, rowColor))
+            console.log(steps[colIdx])
         }
     }
     miro.board.widgets.create(widgets)
 }
 
-function getShape(x, y, color, feature) {
+function getShape(x, y, color) {
     return {
         type: 'shape',
-        text: feature,
+        text: 'test',
         x: x,
         y: y,
         width: columnWidth,
