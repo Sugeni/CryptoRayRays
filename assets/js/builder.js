@@ -49,7 +49,7 @@ function getShape(x, y, color) {
         style: {
             borderWidth: 0,
             backgroundColor: color,
-            shapeType: ''
+            borderRadius: 25.0,
         },
     }
 }
