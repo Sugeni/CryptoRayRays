@@ -70,7 +70,7 @@ function steps(value) {
 function drawTemplate() {
     const widgets = []
 
-    for (let rowIdx = 0; rowIdx < labels.length; rowIdx++) {
+    for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
         const rowY = rowIdx * rowHeight + 10 * rowIdx
         const rowLabel = labels[rowIdx]
         const rowColor = getRowColor(rowIdx)
