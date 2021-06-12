@@ -14,11 +14,9 @@ const colors = [
 
 //const requiredFeatures = ['Category*', 'Background*', 'Outline*', 'Color*'];
 //const optionalFeatures = ['Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories'];
-const labels = ['Category*', 'Background*', 'Outline*', 'Color*','Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories']
+const labels = ['Category*', 'Color*','Eyes', 'Mouth', 'Ears', 'Hats', 'Glasses', 'Jewelry', 'Tags', 'Accesories']
 
 const category = ['CANINE', 'ZOMBIE', 'ALIEN', 'HOLO'];
-const background = ['Transparent']
-const outline = ['Black']
 const color = ['RED', 'RUST', 'GRAY', 'BROWN', 'WHITE', 'GOLD', 'PINK', 'BLUE', 'ZOMBIE', 'ALIEN', 'HOLO'];
 const eyes = ['NONE', 'EYE SPOT', 'SCAR'];
 const mouth = ['NONE', 'DROOL', 'BLOOD', 'FANG'];
@@ -42,26 +40,22 @@ function steps(value) {
         case 0:
             return category[generateRandomInteger(category.length)]
         case 1:
-            return background[generateRandomInteger(background.length)]
-        case 2:
-            return outline[generateRandomInteger(outline.length)]
-        case 3:
             return color[generateRandomInteger(color.length)]
-        case 4:
+        case 2:
             return eyes[generateRandomInteger(eyes.length)]
-        case 5:
+        case 3:
             return mouth[generateRandomInteger(mouth.length)]
-        case 6:
+        case 4:
             return ears[generateRandomInteger(ears.length)]
-        case 7:
+        case 5:
             return hats[generateRandomInteger(hats.length)]
-        case 8:
+        case 6:
             return glasses[generateRandomInteger(glasses.length)]
-        case 9:
+        case 7:
             return jewerlry[generateRandomInteger(jewerlry.length)]
-        case 10:
+        case 8:
             return tags[generateRandomInteger(tags.length)]
-        case 11:
+        case 9:
             return accesories[generateRandomInteger(accesories.length)]
     }
 
