@@ -38,7 +38,6 @@ function generateRandomInteger(max) {
 }
 
 function steps(value) {
-    console.log(`value -> ${value}`)
     switch (value) {
         case 0:
             return category[generateRandomInteger(category.length)]
@@ -83,17 +82,16 @@ function drawTemplate() {
             if (rowIdx === 0) {
                 widgets.push(getColumnLabel(colX, labels[colIdx]))
             }
-            widgets.push(getShape(colX, rowY, rowColor, colIdx))
-            console.log(steps[colIdx])
+            widgets.push(getShape(colX, rowY, rowColor, steps(colIdx)))
         }
     }
     miro.board.widgets.create(widgets)
 }
 
-function getShape(x, y, color) {
+function getShape(x, y, color, feature) {
     return {
         type: 'shape',
-        text: 'test',
+        text: feature,
         x: x,
         y: y,
         width: columnWidth,
@@ -125,5 +123,3 @@ function getColumnLabel(x, label) {
 function getRowColor(index) {
     return colors[index % colors.length]
 }
-
-drawTemplate();
